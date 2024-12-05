@@ -19,7 +19,7 @@ This project is a test assignment to demonstrate skills in developing with React
    - Make sure to install the Android SDK and set up a virtual device (AVD) for testing.
 4. Clone this repository and navigate to the project directory:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/371bohdan/Kozatskyi_task_test.git
 5. Make sure that you have android emulator  
 
 6. Build project:

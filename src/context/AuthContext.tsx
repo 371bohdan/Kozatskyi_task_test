@@ -49,7 +49,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const login = async (data: IFormInput) => {
     const userData: User = {
       ...data,
-      avatar: 'https://reqres.in/img/faces/1-image.jpg', // Default avatar
+      avatar: 'https://reqres.in/img/faces/1-image.jpg',
     };
     setUser(userData);
     await AsyncStorage.setItem('user', JSON.stringify(userData));

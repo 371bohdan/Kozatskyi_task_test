@@ -21,7 +21,7 @@ const FeedScreen: React.FC = () => {
         const response = await axios.get(`https://picsum.photos/v2/list?page=${reset ? 1 : page}&limit=10`);
         setData((prevData) => (reset ? response.data : [...prevData, ...response.data]));
         if (reset) {
-          setPage(2); // Якщо оновлення, наступна сторінка буде друга
+          setPage(2); 
         }
       } catch (error) {
         console.error(error);
@@ -39,7 +39,7 @@ const FeedScreen: React.FC = () => {
 
   const handleRefresh = () => {
     setRefreshing(true);
-    fetchData(true); // Викликаємо з параметром `reset = true`
+    fetchData(true);
   };
 
   const handleLoadMore = () => {

@@ -20,6 +20,9 @@ This project is a test assignment to demonstrate skills in developing with React
 4. Clone this repository and navigate to the project directory:
    ```bash
    git clone https://github.com/371bohdan/Kozatskyi_task_test.git
+
+   after within project
+   npm install
 5. Make sure that you have android emulator  
 
 6. Build project:

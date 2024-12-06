@@ -4,7 +4,7 @@ interface User {
   name: string;
   email: string;
   password: string;
-  avatar?: string; // avatar тепер необов'язковий
+  avatar?: string;
 }
 
 interface AuthContextType {

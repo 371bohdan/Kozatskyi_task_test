@@ -3,7 +3,7 @@ import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { AuthContext } from '../context/AuthContext'; // Імпортуємо AuthContext
+import { AuthContext } from '../context/AuthContext';
 
 interface IFormInput {
   name: string;
@@ -11,7 +11,6 @@ interface IFormInput {
   password: string;
 }
 
-// Схема валідації
 const schema = yup.object().shape({
   name: yup.string().required('Name is required'),
   email: yup.string().email('Invalid email').required('Email is required'),
@@ -21,7 +20,6 @@ const schema = yup.object().shape({
 const AuthScreen: React.FC = () => {
   const authContext = useContext(AuthContext);
 
-  // Перевірка на наявність контексту
   if (!authContext) {
     return null;
   }

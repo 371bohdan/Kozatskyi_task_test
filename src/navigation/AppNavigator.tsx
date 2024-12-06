@@ -15,7 +15,6 @@ const Tab = createMaterialTopTabNavigator<AppTabParamList>();
 const AppNavigator: React.FC = () => {
   const authContext = useContext(AuthContext); 
 
-  // Перевірка на наявність контексту
   if (!authContext) {
     return <AuthScreen />; 
   }

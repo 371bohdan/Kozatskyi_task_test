@@ -19,21 +19,21 @@ const schema = yup.object().shape({
 });
 
 const AuthScreen: React.FC = () => {
-  const authContext = useContext(AuthContext); // Отримуємо контекст
+  const authContext = useContext(AuthContext);
 
   // Перевірка на наявність контексту
   if (!authContext) {
-    return null; // Можна відобразити спінер або інше повідомлення, поки контекст не доступний
+    return null;
   }
 
-  const { login } = authContext; // Тепер можемо безпечно використовувати login
+  const { login } = authContext;
 
   const { control, handleSubmit, formState: { errors } } = useForm<IFormInput>({
     resolver: yupResolver(schema),
   });
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    login(data);  // Викликаємо login з AuthContext
+    login(data);
   };
 
   return (

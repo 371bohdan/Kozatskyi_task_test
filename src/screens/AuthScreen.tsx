@@ -6,13 +6,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { AuthContext } from '../context/AuthContext';
 
 interface IFormInput {
-  name: string;
   email: string;
   password: string;
 }
 
 const schema = yup.object().shape({
-  name: yup.string().required('Name is required'),
   email: yup.string().email('Invalid email').required('Email is required'),
   password: yup.string().min(8, 'Password must be at least 8 characters').required('Password is required'),
 });
@@ -36,20 +34,6 @@ const AuthScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Name:</Text>
-      <Controller
-        name="name"
-        control={control}
-        render={({ field: { onChange, value } }) => (
-          <TextInput
-            style={styles.input}
-            onChangeText={onChange}
-            value={value}
-          />
-        )}
-      />
-      {errors.name && <Text style={styles.error}>{errors.name.message}</Text>}
-
       <Text>Email:</Text>
       <Controller
         name="email"

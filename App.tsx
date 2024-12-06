@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import AppNavigator from './src/navigation/AppNavigator';
-import { AuthProvider } from './src/context/AuthContext';
+import { AuthContext, AuthProvider } from './src/context/AuthContext';
 
 const App = () => {
+  const authContext = useContext(AuthContext);
+
+  if (!authContext) {
+    return null;
+  }
+
+  const { theme } = authContext;
+
   return (
-    <AuthProvider> 
-      <NavigationContainer>
-        <AppNavigator />  
-      </NavigationContainer>
-    </AuthProvider>
+    <NavigationContainer theme={theme}>
+      <AppNavigator />
+    </NavigationContainer>
   );
 };
 
-export default App;
+export default () => (
+  <AuthProvider>
+    <App />
+  </AuthProvider>
+);

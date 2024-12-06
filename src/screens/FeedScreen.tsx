@@ -12,27 +12,34 @@ const FeedScreen: React.FC = () => {
   const [data, setData] = useState<ImageData[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
+  const [refreshing, setRefreshing] = useState<boolean>(false);
 
-  const fetchData = useCallback(async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(`https://picsum.photos/v2/list?page=${page}&limit=10`);
-      setData((prevData) => [...prevData, ...response.data]);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  }, [page]);
+  const fetchData = useCallback(
+    async (reset: boolean = false) => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`https://picsum.photos/v2/list?page=${reset ? 1 : page}&limit=10`);
+        setData((prevData) => (reset ? response.data : [...prevData, ...response.data]));
+        if (reset) {
+          setPage(2); // Якщо оновлення, наступна сторінка буде друга
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+        setRefreshing(false);
+      }
+    },
+    [page]
+  );
 
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
   const handleRefresh = () => {
-    setPage(1);
-    setData([]);
-    fetchData();
+    setRefreshing(true);
+    fetchData(true); // Викликаємо з параметром `reset = true`
   };
 
   const handleLoadMore = () => {
@@ -51,12 +58,13 @@ const FeedScreen: React.FC = () => {
           <Text>{item.author}</Text>
         </View>
       )}
-      refreshControl={<RefreshControl refreshing={loading} onRefresh={handleRefresh} />}
+      refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />}
       onEndReached={handleLoadMore}
       onEndReachedThreshold={0.5}
     />
   );
 };
+
 
 const styles = StyleSheet.create({
   card: { marginBottom: 16 },

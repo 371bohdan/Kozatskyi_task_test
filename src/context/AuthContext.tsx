@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, ReactNode, useContext } from 'react';
+import React, { createContext, useState, useEffect, ReactNode } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DefaultTheme, DarkTheme, Theme } from '@react-navigation/native';
 
@@ -13,7 +13,7 @@ interface AuthContextType {
   login: (data: IFormInput) => Promise<void>;
   logout: () => Promise<void>;
   theme: Theme;
-  toggleTheme: () => Promise<void>;
+  toggleTheme: () => void;
 }
 
 interface IFormInput {

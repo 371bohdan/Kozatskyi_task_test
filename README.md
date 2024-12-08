@@ -33,7 +33,10 @@ cd android
 
 8. Run command:
 npm start
-
 When you are presented with device options, choose a
+
+OR 
+
+npm run android 
 
    
